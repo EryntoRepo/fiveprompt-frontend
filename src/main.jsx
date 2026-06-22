@@ -32,6 +32,14 @@ try {
       <App />
     </React.StrictMode>
   );
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js").catch((error) => {
+        console.error("Registrazione service worker non riuscita:", error);
+      });
+    });
+  }
 } catch (error) {
   showStartupError(error);
 }
